@@ -1,18 +1,12 @@
 <template>
-  <img alt="Vue logo" src="./assets/asentrum-logo.png" />
-  <HelloWorld msg="Asentrum" />
+  <div id="nav">
+    <router-link to="/">Login</router-link>
+    <router-link to="/dashboard">Dashboard</router-link>
+    <router-link to="/administration">Administration</router-link>
+    <router-link to="/tasks">Tasks</router-link>
+  </div>
+  <router-view />
 </template>
-
-<script>
-import HelloWorld from "./components/HelloWorld.vue";
-
-export default {
-  name: "App",
-  components: {
-    HelloWorld,
-  },
-};
-</script>
 
 <style lang="scss">
 #app {
@@ -21,6 +15,18 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
 }
 </style>
