@@ -4,27 +4,27 @@
 
 <script>
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import router from "../router";
+import router from "../../../router";
 
 export default {
   name: "SignOut",
   data() {
     return {
       auth: null,
-      isLoggedIn: false
+      isLoggedIn: false,
     };
   },
   mounted() {
-    this.auth = getAuth()
+    this.auth = getAuth();
     onAuthStateChanged(this.auth, (user) => {
-      user ? this.isLoggedIn = true : this.isLoggedIn = false
-    })
-  }
+      user ? (this.isLoggedIn = true) : (this.isLoggedIn = false);
+    });
+  },
   methods: {
     async signOut() {
       signOut(this.auth).then(() => {
-        router.push("/login/")
-      })
+        router.push("/login/");
+      });
     },
   },
 };

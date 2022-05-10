@@ -1,32 +1,26 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Login</router-link>
-    <router-link to="/dashboard">Dashboard</router-link>
-    <router-link to="/administration">Administration</router-link>
-    <router-link to="/tasks">Tasks</router-link>
-  </div>
-  <router-view />
+  <main class="app">
+    <router-view name="navigation" />
+    <router-view />
+  </main>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("http://fonts.cdnfonts.com/css/sofia-pro?styles=17636,17634,17638,17628");
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Sofia Pro 400", sans-serif;
 }
 
-#nav {
-  padding: 30px;
+#app {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.app {
+  display: flex;
 }
 </style>

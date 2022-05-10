@@ -1,16 +1,20 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
 import Administration from "../views/Administration";
 import Login from "../views/Login";
-import Tasks from "../components/Tasks";
+import Tasks from "../views/Tasks";
+import Navigation from "../components/layout/Navigation";
 // import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const routes = [
   {
     path: "/dashboard/",
     name: "Dashboard",
-    component: Dashboard,
-    //add this meta tag to create guarding class
+    components: {
+      navigation: Navigation,
+      default: Dashboard,
+    },
+    //add this meta tag to create guarding navigation
     meta: {
       requiresAuth: true,
     },
@@ -18,12 +22,18 @@ const routes = [
   {
     path: "/administration/",
     name: "Administration",
-    component: Administration,
+    components: {
+      navigation: Navigation,
+      default: Administration,
+    },
   },
   {
     path: "/tasks/",
     name: "Tasks",
-    component: Tasks,
+    components: {
+      navigation: Navigation,
+      default: Tasks,
+    },
   },
   {
     path: "/",
@@ -33,7 +43,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes,
 });
 

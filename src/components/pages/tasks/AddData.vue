@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-          <h2>Add City</h2>
+          <h2>Add User</h2>
           <form @submit.prevent="createCity">
             <div class="form-group">
               <input
@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import citiesColRef from "../firebase";
+import citiesColRef from "../../../firebase";
 import { addDoc } from "firebase/firestore";
 
 export default {
