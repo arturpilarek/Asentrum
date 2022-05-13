@@ -25,15 +25,16 @@ export default {
 
 <style scoped lang="scss">
 .navigation {
-  width: 330px;
-  height: 300vh;
+  width: 360px;
+  height: 100%;
   background-color: $main-color;
   .fixed-wrapper {
+    background-color: $main-color;
     position: fixed;
-    width: 330px;
+    width: 360px;
+    height: 100%;
     @include flex-column;
     align-items: center;
-    height: 100vh;
   }
   &__logo {
     width: 151px;

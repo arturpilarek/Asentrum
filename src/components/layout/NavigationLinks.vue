@@ -38,7 +38,6 @@ export default {
     display: flex;
     gap: 16px;
     align-items: center;
-    padding-left: 16px;
     color: $secondary-color;
     text-decoration: none;
     font-weight: 600;

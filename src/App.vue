@@ -1,7 +1,10 @@
 <template>
   <main class="app">
-    <router-view name="navigation" />
-    <router-view />
+    <router-view name="navigation" class="app__navigation" />
+    <section class="app__view">
+      <router-view name="topBar" />
+      <router-view />
+    </section>
   </main>
 </template>
 
@@ -15,6 +18,10 @@
   font-family: "Sofia Pro 400", sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -22,5 +29,13 @@
 
 .app {
   display: flex;
+  height: 100%;
+  width: 100%;
+  &__navigation {
+    width: 360px;
+  }
+  &__view {
+    flex-grow: 1;
+  }
 }
 </style>

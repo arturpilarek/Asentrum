@@ -1,7 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection } from "firebase/firestore";
 const firebaseConfig = {
-  //USE YOUR CREDENTIALS HERE, i AM GOING TO DELETE THESE
   apiKey: "AIzaSyDq6HJqM08BBt_nfeHF_c6nwSm99PX3RUU",
   authDomain: "asentrum-4b06b.firebaseapp.com",
   projectId: "asentrum-4b06b",
