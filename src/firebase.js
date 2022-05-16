@@ -11,5 +11,5 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const citiesColRef = collection(db, "users");
-export default citiesColRef;
+const tasksCollection = collection(db, "tasks");
+export default tasksCollection;

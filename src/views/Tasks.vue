@@ -1,22 +1,17 @@
 <template>
-  <h1>Tasks</h1>
-  <p>{{ displayCurrentUser }} here</p>
-  <button @click="setCurrentUser('Stara')">Name me</button>
+  <AddData />
+  <TasksList />
 </template>
 
 <script>
+import AddData from "../components/pages/tasks/CreateTask";
+import TasksList from "../components/pages/tasks/TasksList";
+
 export default {
   name: "Tasks.vue",
-  computed: {
-    displayCurrentUser() {
-      return this.$store.state.user.displayName;
-    },
-  },
-  methods: {
-    setCurrentUser(user) {
-      this.$store.commit("setUser", user);
-    },
-  },
+  components: { AddData, TasksList },
+  computed: {},
+  methods: {},
 };
 </script>
 

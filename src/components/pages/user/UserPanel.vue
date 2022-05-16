@@ -2,10 +2,10 @@
   <div class="user-panel">
     <div
       class="user-panel__image-container"
-      :style="{ backgroundImage: `url('${getUserImage}')` }"
+      :style="{ backgroundImage: `url('${photoURL}')` }"
     ></div>
     <div class="link-wrapper">
-      <p class="user-panel__info__link" v-if="getUsername">{{ getUsername }}</p>
+      <p class="user-panel__info__link" v-if="displayName">{{ displayName }}</p>
       <p class="user-panel__info__link" v-else>User unknown</p>
       <router-link class="user-panel__info__link" to="#"
         >Indstillinger</router-link
@@ -17,18 +17,12 @@
 
 <script>
 import router from "../../../router";
+import { mapGetters } from "vuex";
 
 export default {
   name: "UserPanel",
   computed: {
-    getUsername() {
-      console.log(this.$store.state.user);
-      return this.$store.state.user.displayName;
-    },
-    getUserImage() {
-      console.log(this.$store.state.user.photoURL);
-      return this.$store.state.user.photoURL;
-    },
+    ...mapGetters(["displayName", "photoURL"]),
   },
   methods: {
     signout() {
