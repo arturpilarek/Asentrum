@@ -7,7 +7,7 @@
     <div class="link-wrapper">
       <p class="user-panel__info__link" v-if="displayName">{{ displayName }}</p>
       <p class="user-panel__info__link" v-else>User unknown</p>
-      <router-link class="user-panel__info__link" to="#"
+      <router-link class="user-panel__info__link" to="/settings"
         >Indstillinger</router-link
       >
       <span class="user-panel__info__link" @click="signout">Log ud</span>

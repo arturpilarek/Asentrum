@@ -17,7 +17,16 @@ export default {
   actions: {
     async createTask(
       context,
-      { title, description, internDescription, client, deadline, todoList }
+      {
+        title,
+        description,
+        internDescription,
+        client,
+        deadline,
+        todoList,
+        addedUsers,
+        status,
+      }
     ) {
       await addDoc(tasksCollection, {
         title,
@@ -26,6 +35,8 @@ export default {
         client,
         deadline,
         todoList,
+        addedUsers,
+        status,
       });
     },
     async fetchTasks(context) {

@@ -5,6 +5,7 @@ import Login from "../views/Login";
 import Tasks from "../views/Tasks";
 import Navigation from "../components/layout/Navigation";
 import TopBar from "../components/layout/TopBar";
+import Settings from "../views/Settings";
 import { getAuth } from "firebase/auth";
 
 const routes = [
@@ -49,6 +50,18 @@ const routes = [
     path: "/",
     name: "Login",
     component: Login,
+  },
+  {
+    path: "/settings/",
+    name: "Settings",
+    components: {
+      navigation: Navigation,
+      topBar: TopBar,
+      default: Settings,
+    },
+    meta: {
+      requiresAuth: true,
+    },
   },
 ];
 

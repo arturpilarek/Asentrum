@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
   getAuth,
+  updateProfile,
 } from "firebase/auth";
 // import { createUserWithEmailAndPassword } from "firebase/auth";
 
@@ -19,8 +20,13 @@ export default {
       state.user = payload;
       console.log("user state changed:", payload);
     },
+    updateUser(state, payload) {
+      state.user = { ...state.user, payload };
+      console.log("user state updated:", state.user);
+    },
   },
   getters: {
+    user: (state) => state.user,
     photoURL: (state) => state.user.photoURL,
     displayName: (state) => state.user.displayName,
   },
@@ -39,6 +45,27 @@ export default {
       console.log("logout");
       await signOut(getAuth());
       context.commit("setUser", null);
+    },
+
+    async updateProfile(context, { updatedValue }) {
+      const res = await updateProfile(getAuth().currentUser, {
+        updatedValue,
+      });
+      if (res) {
+        context.commit("updateUser", {
+          updatedValue,
+        });
+      }
+    },
+    async updateDisplayName(context, { displayName }) {
+      const res = await updateProfile(getAuth().currentUser, {
+        displayName,
+      });
+      if (res) {
+        context.commit("updateUser", {
+          displayName,
+        });
+      }
     },
 
     async signup(context, { email, password }) {

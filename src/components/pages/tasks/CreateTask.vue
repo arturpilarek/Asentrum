@@ -56,8 +56,29 @@
               </ul>
             </div>
           </div>
+          <div>
+            <div>
+              <p>Tildelt adgang</p>
+              <select v-model="user">
+                <option value="" disabled>Tilføj bruger</option>
+                <option>John Larsen</option>
+                <option>Sofie Jørgensen</option>
+                <option>Mads Hansen</option>
+              </select>
+              <button @click="addUser">+</button>
+            </div>
+            <div>
+              <p>Tilføjet</p>
+              <ul>
+                <li v-for="(user, index) in addedUsers" :key="index">
+                  <p>{{ user }}</p>
+                  <button @click="removeUser(index)">-</button>
+                </li>
+              </ul>
+            </div>
+          </div>
           <button @click="createTask" class="btn btn-primary">
-            Create Task
+            Opret case
           </button>
         </div>
       </div>
@@ -76,6 +97,8 @@ export default {
       taskDeadline: "",
       todo: "",
       todoList: [],
+      user: null,
+      addedUsers: [],
     };
   },
   methods: {
@@ -88,6 +111,8 @@ export default {
           client: this.taskClient,
           deadline: this.taskDeadline,
           todoList: this.todoList,
+          addedUsers: this.addedUsers,
+          status: "New",
         });
         await this.$store.dispatch("fetchTasks");
         this.taskName = null;
@@ -96,8 +121,10 @@ export default {
         this.taskClient = "";
         this.taskDeadline = "";
         this.todoList = [];
+        this.addedUsers = [];
       } catch (error) {
         alert("Something went wrong, try again later");
+        console.log(error.code);
       }
     },
     updateTodo() {
@@ -111,6 +138,13 @@ export default {
     },
     removeTodo(index) {
       this.todoList.splice(index, 1);
+    },
+    addUser() {
+      this.addedUsers.push(this.user);
+      this.user = "";
+    },
+    removeUser(index) {
+      this.addedUsers.splice(index, 1);
     },
   },
 };
