@@ -17,7 +17,6 @@ const routes = [
       topBar: TopBar,
       default: Dashboard,
     },
-    //add this meta tag to create guarding navigation
     meta: {
       requiresAuth: true,
     },
@@ -69,29 +68,6 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-
-// const getCurrentUser = () => {
-//   return new Promise((resolve, reject) => {
-//     const changedState = onAuthStateChanged(
-//       getAuth(),
-//       (user) => {
-//         changedState();
-//         resolve(user);
-//       },
-//       reject
-//     );
-//   });
-// };
-
-// router.beforeEach(async (to, from, next) => {
-//   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
-//   if (requiresAuth && !(await getCurrentUser())) {
-//     next();
-//   } else {
-//     // alert("you dont have an access");
-//     next("/");
-//   }
-// });
 
 //Function to redirect to login screen if user is not logged in
 router.beforeEach((to, from, next) => {

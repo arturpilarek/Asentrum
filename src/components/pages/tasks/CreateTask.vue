@@ -87,19 +87,27 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
-      taskName: null,
-      taskDescription: null,
-      internTaskDescription: null,
+      taskName: "",
+      taskDescription: "",
+      internTaskDescription: "",
       taskClient: "",
       taskDeadline: "",
       todo: "",
       todoList: [],
-      user: null,
+      user: "",
       addedUsers: [],
     };
+  },
+  computed: {
+    ...mapGetters(["tasksLength"]),
+    createInternalId() {
+      return this.tasksLength + 1;
+    },
   },
   methods: {
     async createTask() {
@@ -113,11 +121,12 @@ export default {
           todoList: this.todoList,
           addedUsers: this.addedUsers,
           status: "New",
+          internalId: this.createInternalId,
         });
         await this.$store.dispatch("fetchTasks");
-        this.taskName = null;
-        this.taskDescription = null;
-        this.internTaskDescription = null;
+        this.taskName = "";
+        this.taskDescription = "";
+        this.internTaskDescription = "";
         this.taskClient = "";
         this.taskDeadline = "";
         this.todoList = [];

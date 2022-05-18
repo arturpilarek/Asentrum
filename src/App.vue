@@ -3,7 +3,7 @@
     <router-view name="navigation" class="app__navigation" />
     <section class="app__view">
       <router-view name="topBar" />
-      <router-view />
+      <router-view class="content" />
     </section>
   </main>
 </template>
@@ -36,6 +36,9 @@ a {
   }
   &__view {
     flex-grow: 1;
+  }
+  .content {
+    padding: 50px;
   }
 }
 </style>

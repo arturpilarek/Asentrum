@@ -16,7 +16,6 @@
 </template>
 
 <script>
-import router from "../../../router";
 import { mapGetters } from "vuex";
 
 export default {
@@ -26,7 +25,6 @@ export default {
   },
   methods: {
     signout() {
-      router.push("/");
       this.$store.dispatch("logout");
     },
   },

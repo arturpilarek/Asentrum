@@ -5,7 +5,7 @@ import {
   getAuth,
   updateProfile,
 } from "firebase/auth";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
+import router from "../router";
 
 export default {
   state: {
@@ -31,7 +31,6 @@ export default {
     displayName: (state) => state.user.displayName,
   },
   actions: {
-    // Add to the UserCreate later on
     async login(context, { email, password }) {
       const res = await signInWithEmailAndPassword(getAuth(), email, password);
       if (res) {
@@ -45,17 +44,7 @@ export default {
       console.log("logout");
       await signOut(getAuth());
       context.commit("setUser", null);
-    },
-
-    async updateProfile(context, { updatedValue }) {
-      const res = await updateProfile(getAuth().currentUser, {
-        updatedValue,
-      });
-      if (res) {
-        context.commit("updateUser", {
-          updatedValue,
-        });
-      }
+      router.push("/");
     },
     async updateDisplayName(context, { displayName }) {
       const res = await updateProfile(getAuth().currentUser, {
@@ -64,6 +53,28 @@ export default {
       if (res) {
         context.commit("updateUser", {
           displayName,
+        });
+      }
+    },
+
+    async updateEmail(context, { email }) {
+      const res = await updateProfile(getAuth().currentUser, {
+        email,
+      });
+      if (res) {
+        context.commit("updateUser", {
+          email,
+        });
+      }
+    },
+
+    async updatePhotoURL(context, { photoURL }) {
+      const res = await updateProfile(getAuth().currentUser, {
+        photoURL,
+      });
+      if (res) {
+        context.commit("updateUser", {
+          photoURL,
         });
       }
     },

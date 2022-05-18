@@ -46,6 +46,18 @@ export default {
             displayName: this.displayName,
           });
         }
+        if (this.email) {
+          await this.$store.dispatch("updateEmail", {
+            email: this.email,
+          });
+        }
+        if (this.photoURL) {
+          await this.$store.dispatch("updatePhotoURL", {
+            photoURL: this.photoURL,
+          });
+        }
+        alert("Data opdateret succefuld, log ind igen");
+        this.$store.dispatch("logout");
       } catch (error) {
         console.log(error.code);
       }

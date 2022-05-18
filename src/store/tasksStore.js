@@ -13,6 +13,7 @@ export default {
   },
   getters: {
     tasks: (state) => state.tasks,
+    tasksLength: (state) => state.tasks.length,
   },
   actions: {
     async createTask(
@@ -26,6 +27,7 @@ export default {
         todoList,
         addedUsers,
         status,
+        internalId,
       }
     ) {
       await addDoc(tasksCollection, {
@@ -37,6 +39,7 @@ export default {
         todoList,
         addedUsers,
         status,
+        internalId,
       });
     },
     async fetchTasks(context) {

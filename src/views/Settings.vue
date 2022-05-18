@@ -1,5 +1,7 @@
 <template>
-  <EditUser />
+  <section>
+    <EditUser />
+  </section>
 </template>
 
 <script>

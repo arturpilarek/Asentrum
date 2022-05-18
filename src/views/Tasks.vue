@@ -1,15 +1,15 @@
 <template>
-  <AddData />
-  <TasksList />
+  <section>
+    <AddData />
+  </section>
 </template>
 
 <script>
 import AddData from "../components/pages/tasks/CreateTask";
-import TasksList from "../components/pages/tasks/TasksList";
 
 export default {
   name: "Tasks.vue",
-  components: { AddData, TasksList },
+  components: { AddData },
   computed: {},
   methods: {},
 };

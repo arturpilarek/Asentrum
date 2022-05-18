@@ -1,5 +1,7 @@
 <template>
-  <UserCreate />
+  <section>
+    <UserCreate />
+  </section>
 </template>
 
 <script>
