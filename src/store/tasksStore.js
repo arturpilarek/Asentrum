@@ -14,6 +14,17 @@ export default {
   getters: {
     tasks: (state) => state.tasks,
     tasksLength: (state) => state.tasks.length,
+    tasksStatus: (state) => {
+      return {
+        activeCases: state.tasks.filter(
+          (task) => task.status === "Active" || "Waiting"
+        ).length,
+        needsAttention: state.tasks.filter((task) => task.needsAttention)
+          .length,
+        solvedCases: state.tasks.filter((task) => task.status === "Solved")
+          .length,
+      };
+    },
   },
   actions: {
     async createTask(
@@ -28,6 +39,7 @@ export default {
         addedUsers,
         status,
         internalId,
+        needsAttention,
       }
     ) {
       await addDoc(tasksCollection, {
@@ -40,6 +52,7 @@ export default {
         addedUsers,
         status,
         internalId,
+        needsAttention,
       });
     },
     async fetchTasks(context) {

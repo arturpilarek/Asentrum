@@ -1,5 +1,11 @@
 <template>
   <div class="content-container">
+    <h3
+      v-if="title"
+      :style="[titleCentered ? 'textAlign: center' : 'textAlign: initial']"
+    >
+      {{ title }}
+    </h3>
     <slot></slot>
   </div>
 </template>
@@ -7,6 +13,18 @@
 <script>
 export default {
   name: "ContentContainer",
+  props: {
+    title: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    titleCentered: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+  },
 };
 </script>
 

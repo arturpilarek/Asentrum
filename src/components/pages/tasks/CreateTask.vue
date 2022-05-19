@@ -120,8 +120,9 @@ export default {
           deadline: this.taskDeadline,
           todoList: this.todoList,
           addedUsers: this.addedUsers,
-          status: "New",
+          status: "Active",
           internalId: this.createInternalId,
+          needsAttention: false,
         });
         await this.$store.dispatch("fetchTasks");
         this.taskName = "";

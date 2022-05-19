@@ -27,6 +27,21 @@ a {
   -moz-osx-font-smoothing: grayscale;
 }
 
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background-color: hsla(0, 0, 14%, 0.11);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb {
+  border: 4px solid hsla(0, 0, 14%, 0.26);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsla(0, 0, 14%, 0.33);
+}
+
 .app {
   display: flex;
   height: 100%;
