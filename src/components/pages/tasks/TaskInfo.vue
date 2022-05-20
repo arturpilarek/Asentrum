@@ -26,23 +26,34 @@
       <p class="todo__title">To-do</p>
       <ul class="todo__wrapper">
         <li class="todo__item todo__header">
-          <p class="invisible">Placeholder</p>
-          <p>Status</p>
-          <p>Pris</p>
-          <p>Antal timer</p>
+          <p class="todo__item__text invisible"></p>
+          <p class="todo__item__text">Antal timer</p>
+          <p class="todo__item__text">Status</p>
+          <p class="todo__item__text">Pris</p>
         </li>
-        <li v-for="(todo, index) in task.todo" :key="index">
-          <p>done</p>
-          <p>{{ todo.name }}</p>
-          <p>{{ todo.hours }}</p>
-          <p>{{ todo.price }}</p>
+        <li
+          class="todo__item"
+          v-for="(todo, index) in task.todoList"
+          :key="index"
+        >
+          <p class="todo__item__text">
+            <span>done</span>
+            {{ todo.name }}
+          </p>
+          <p class="todo__item__text">{{ todo.hours }}</p>
+          <p class="todo__item__text">status</p>
+          <p class="todo__item__text">{{ todo.price }}kr</p>
         </li>
       </ul>
     </div>
     <div class="user-added>">
-      <p>Tildelt adgang</p>
-      <ul>
-        <li v-for="(addedUser, index) in task.addedUsers" :key="index">
+      <p class="user-added__title">Tildelt adgang</p>
+      <ul class="user-added__wrapper">
+        <li
+          class="user"
+          v-for="(addedUser, index) in task.addedUsers"
+          :key="index"
+        >
           <p>{{ addedUser }}</p>
         </li>
       </ul>
@@ -109,6 +120,33 @@ export default {
       box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
       padding: 24px;
       border-radius: 8px;
+    }
+  }
+  .todo {
+    padding-bottom: 24px;
+    &__header {
+      font-weight: 600;
+      font-size: 16px;
+      padding-bottom: 12px;
+    }
+    &__title {
+      font-weight: 600;
+      padding-bottom: 12px;
+    }
+    &__item {
+      display: grid;
+      max-width: 600px;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+  }
+  .user-added {
+    &__title {
+      font-weight: 600;
+      padding-bottom: 12px;
+    }
+    .user-added__wrapper {
+    }
+    .user {
     }
   }
 }

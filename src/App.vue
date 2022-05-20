@@ -23,6 +23,10 @@ a {
   color: $main-color;
 }
 
+ul {
+  list-style: none;
+}
+
 #app {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

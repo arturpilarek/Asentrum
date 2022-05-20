@@ -4,7 +4,9 @@
       <ContentContainer class="task__info">
         <TaskInfo v-if="task" :task="task" />
       </ContentContainer>
-      <ContentContainer class="task__chat"></ContentContainer>
+      <ContentContainer class="task__chat">
+        <TaskChat />
+      </ContentContainer>
     </div>
   </section>
 </template>
@@ -13,10 +15,11 @@
 import { mapGetters } from "vuex";
 import ContentContainer from "../components/ui/ContentContainer";
 import TaskInfo from "../components/pages/tasks/TaskInfo";
+import TaskChat from "../components/pages/tasks/TaskChat";
 
 export default {
   name: "Task",
-  components: { ContentContainer, TaskInfo },
+  components: { ContentContainer, TaskInfo, TaskChat },
   data() {
     return {
       taskId: null,
@@ -37,7 +40,7 @@ export default {
 <style scoped lang="scss">
 .task {
   &__grid {
-    height: calc(100vh - 228px);
+    height: 100%;
     gap: 25px;
     display: grid;
     grid-template-columns: 8fr 6fr;
