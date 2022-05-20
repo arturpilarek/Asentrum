@@ -108,6 +108,12 @@ export default {
     createInternalId() {
       return this.tasksLength + 1;
     },
+    getTodayDate() {
+      const today = new Date();
+      return `${today.getDate()}.${("0" + today.getMonth()).slice(
+        -2
+      )}.${today.getFullYear()}`;
+    },
   },
   methods: {
     async createTask() {
@@ -123,6 +129,7 @@ export default {
           status: "Active",
           internalId: this.createInternalId,
           needsAttention: false,
+          created: this.getTodayDate,
         });
         await this.$store.dispatch("fetchTasks");
         this.taskName = "";

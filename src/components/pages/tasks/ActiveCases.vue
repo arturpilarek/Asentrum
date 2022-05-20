@@ -7,12 +7,14 @@
         <p class="case__mangler-svar">Mangler Svar</p>
         <p class="case__title">Titel</p>
       </li>
-      <li class="case" v-for="(task, index) in tasksSortId" :key="index">
-        <StatusIcon class="case__status" :status="task.status" />
-        <p class="case__id">#{{ task.internalId }}</p>
-        <BellIcon v-if="task.needsAttention" class="case__mangler-svar" />
-        <p v-else class="case__mangler-svar"></p>
-        <p class="case--title">{{ task.title }}</p>
+      <li v-for="(task, index) in tasksSorted" :key="index">
+        <router-link class="case case-link" :to="{ path: `/task/${task.id}` }">
+          <StatusIcon class="case__status" :status="task.status" />
+          <p class="case__id">#{{ task.internalId }}</p>
+          <BellIcon v-if="task.needsAttention" class="case__mangler-svar" />
+          <p v-else class="case__mangler-svar"></p>
+          <p class="case--title">{{ task.title }}</p>
+        </router-link>
       </li>
     </ul>
   </div>
@@ -28,12 +30,19 @@ export default {
   components: { BellIcon, StatusIcon },
   computed: {
     ...mapGetters(["tasks"]),
-    tasksSortId() {
-      return [...this.tasks].sort((a, b) => a.internalId - b.internalId);
+    tasksSorted() {
+      return [...this.tasks]
+        .sort((a, b) => a.internalId - b.internalId)
+        .filter((task) => task.status !== "Solved");
     },
   },
-  created() {
-    this.$store.dispatch("fetchTasks");
+  methods: {
+    async fetchTask(id) {
+      await this.$store.dispatch("fetchTask", { id });
+    },
+  },
+  async created() {
+    await this.$store.dispatch("fetchTasks");
   },
 };
 </script>
@@ -41,7 +50,8 @@ export default {
 <style scoped lang="scss">
 .active-cases {
   max-height: 200px;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-top: 50px;
   width: 100%;
   height: 100%;
@@ -57,7 +67,6 @@ export default {
     display: grid;
     grid-template-columns: 1fr 1fr 120px 4fr;
     justify-items: center;
-    align-items: flex-start;
     width: 100%;
     position: relative;
     &:after {
@@ -71,13 +80,30 @@ export default {
       background-color: $accent-gray;
     }
   }
+  .case-link {
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    &:hover {
+      :before {
+        content: "";
+        position: absolute;
+        height: calc(100% + 20px);
+        width: 100%;
+        top: -10px;
+        background-color: #f0f0f0;
+        z-index: -1;
+      }
+    }
+  }
+
   .case--header {
     font-weight: 600;
     margin-bottom: 10px;
+    z-index: 3;
     position: sticky;
     top: 0;
     background-color: white;
-    z-index: 2;
     padding-bottom: 10px;
     border-bottom: $accent-gray 2px solid;
 

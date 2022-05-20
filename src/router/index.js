@@ -3,6 +3,7 @@ import Dashboard from "../views/Dashboard.vue";
 import Administration from "../views/Administration";
 import Login from "../views/Login";
 import Tasks from "../views/Tasks";
+import Task from "../views/Task";
 import Navigation from "../components/layout/Navigation";
 import TopBar from "../components/layout/TopBar";
 import Settings from "../views/Settings";
@@ -40,6 +41,18 @@ const routes = [
       navigation: Navigation,
       topBar: TopBar,
       default: Tasks,
+    },
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/task/:taskId",
+    name: "Task",
+    components: {
+      navigation: Navigation,
+      topBar: TopBar,
+      default: Task,
     },
     meta: {
       requiresAuth: true,

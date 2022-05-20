@@ -12,6 +12,7 @@
       <p>Cases løst:</p>
       <span class="solved-cases">{{ tasksStatus.solvedCases }}</span>
     </div>
+    <div></div>
   </div>
 </template>
 
