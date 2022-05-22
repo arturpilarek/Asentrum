@@ -49,10 +49,10 @@ export default {
 .tasks-overview {
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 350px;
+  max-height: 450px;
   width: 100%;
   height: 100%;
-  margin-top: 50px;
+  margin-top: 36px;
   ul {
     width: 100%;
     display: flex;

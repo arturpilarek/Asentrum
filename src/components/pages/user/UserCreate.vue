@@ -108,10 +108,14 @@ export default {
 .user-create {
   padding-top: 24px;
   @include flex-column;
+  align-items: center;
   gap: 13px;
   .input-container {
     @include flex-column;
     width: 50%;
+    @media screen and (max-width: 1100px) {
+      width: 100%;
+    }
     label {
       padding-bottom: 3px;
       font-weight: 600;

@@ -29,9 +29,12 @@ export default {
 
 <style scoped lang="scss">
 .administration {
-  @include flex-column;
-  max-width: 800px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
+  @media screen and (max-width: 850px) {
+    grid-template-columns: 1fr;
+  }
   .administration__container {
   }
 }

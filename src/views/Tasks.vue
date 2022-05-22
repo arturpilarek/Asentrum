@@ -49,10 +49,10 @@ export default {
 <style scoped lang="scss">
 .tasks {
   display: grid;
-  min-height: calc(100vh - 132px);
   gap: 25px;
+  min-height: calc(100vh - 132px);
   grid-template-columns: 2fr 1fr 2fr;
-  grid-template-rows: auto;
+  grid-template-rows: 400px 1fr;
   grid-template-areas:
     "activeCases status recentActivity"
     "tasksOverview tasksOverview tasksOverview";
@@ -69,6 +69,7 @@ export default {
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    min-height: calc(100vh - 80px);
     .container {
       width: 100%;
     }
