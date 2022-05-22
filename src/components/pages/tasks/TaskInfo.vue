@@ -31,15 +31,24 @@
           <p class="todo__item__text">Status</p>
           <p class="todo__item__text">Pris</p>
         </li>
-        <li
-          class="todo__item"
-          v-for="(todo, index) in task.todoList"
-          :key="index"
-        >
-          <p class="todo__item__text">
-            <span>done</span>
-            {{ todo.name }}
-          </p>
+        <li class="todo__item" v-for="(todo, index) in todoList" :key="index">
+          <div class="checkbox-wrapper">
+            <div
+              @click="changeTodoStatus(index, todo.status)"
+              class="checkbox__container"
+              :class="[
+                todo.status === 'toDo'
+                  ? 'checkbox__container--unchecked'
+                  : 'checkbox__container--checked',
+              ]"
+            >
+              <CheckboxIcon />
+            </div>
+            <p class="todo__item__text">
+              {{ todo.name }}
+            </p>
+          </div>
+
           <p class="todo__item__text">{{ todo.hours }}</p>
           <p class="todo__item__text">status</p>
           <p class="todo__item__text">{{ todo.price }}kr</p>
@@ -63,6 +72,9 @@
 
 <script>
 import EditIcon from "../../../assets/icons/EditIcon";
+import CheckboxIcon from "../../../assets/icons/CheckboxIcon";
+import { setDoc, doc } from "firebase/firestore";
+import tasksCollection from "../../../firebase";
 
 export default {
   name: "TaskInfo",
@@ -72,7 +84,13 @@ export default {
       required: true,
     },
   },
-  components: { EditIcon },
+  data() {
+    return {
+      todoList: this.task.todoList,
+      taskId: this.$route.params.taskId,
+    };
+  },
+  components: { EditIcon, CheckboxIcon },
   computed: {
     statusColor() {
       return this.task.status === "Active"
@@ -80,6 +98,21 @@ export default {
         : this.status === "Solved"
         ? "#EECA44"
         : "#ADADAD";
+    },
+    getCurrentId() {
+      return this.taskId.toString();
+    },
+  },
+  methods: {
+    changeTodoStatus(index, status) {
+      status === "toDo"
+        ? (this.todoList[index].status = "done")
+        : (this.todoList[index].status = "toDo");
+      this.updateTodoStatus();
+    },
+    async updateTodoStatus() {
+      let taskRef = doc(tasksCollection, this.taskId);
+      await setDoc(taskRef, { ...this.task, todoList: this.todoList });
     },
   },
 };
@@ -124,6 +157,10 @@ export default {
   }
   .todo {
     padding-bottom: 24px;
+    &__wrapper {
+      @include flex-column;
+      gap: 6px;
+    }
     &__header {
       font-weight: 600;
       font-size: 16px;
@@ -136,7 +173,29 @@ export default {
     &__item {
       display: grid;
       max-width: 600px;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+    .checkbox-wrapper {
+      display: flex;
+      gap: 12px;
+      .checkbox__container {
+        cursor: pointer;
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .checkbox__container--unchecked {
+        border: 1px solid rgba(36, 36, 36, 0.46);
+        background-color: white;
+      }
+      .checkbox__container--checked {
+        border: none;
+        background-color: #27b981;
+      }
     }
   }
   .user-added {

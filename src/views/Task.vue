@@ -43,7 +43,11 @@ export default {
     height: 100%;
     gap: 25px;
     display: grid;
-    grid-template-columns: 8fr 6fr;
+    grid-template-columns: 9fr 5fr;
+    @media screen and (max-width: 825px) {
+      @include flex-column;
+      gap: 25px;
+    }
   }
 }
 </style>

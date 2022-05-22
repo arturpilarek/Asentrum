@@ -168,6 +168,7 @@ export default {
         name: this.todo,
         hours: 0,
         price: 0,
+        status: "toDo",
       };
       this.todoList.push(todoData);
       this.todo = "";
