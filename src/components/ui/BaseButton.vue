@@ -40,5 +40,6 @@ export default {
   margin-top: 16px;
   cursor: pointer;
   border: none;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
 }
 </style>

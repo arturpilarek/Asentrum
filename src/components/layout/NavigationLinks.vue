@@ -34,6 +34,12 @@ export default {
 .navigation-links {
   @include flex-column;
   gap: 70px;
+  @media screen and (max-width: 600px) {
+    gap: 30px;
+  }
+  @media screen and (max-height: 800px) {
+    gap: 35px;
+  }
   &__link {
     display: flex;
     gap: 16px;
@@ -42,6 +48,14 @@ export default {
     text-decoration: none;
     font-weight: 600;
     font-size: 20px;
+    @media screen and (max-width: 1400px) {
+      font-size: 18px;
+    }
+    p {
+      @media screen and (max-width: 1100px) {
+        display: none;
+      }
+    }
   }
   .router-link-exact-active {
     color: $accent-color;

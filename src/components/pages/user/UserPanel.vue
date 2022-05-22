@@ -34,6 +34,9 @@ export default {
 <style scoped lang="scss">
 .user-panel {
   @include flex-center;
+  @media screen and (max-width: 1400px) {
+    flex-direction: column;
+  }
   gap: 16px;
   .link-wrapper {
     height: 90px;
@@ -44,7 +47,10 @@ export default {
     p {
       color: $secondary-color;
       font-weight: 600;
-      font-size: 21px;
+      font-size: 20px;
+      @media screen and (max-width: 1400px) {
+        font-size: 18px;
+      }
     }
     span {
       cursor: pointer;
@@ -58,6 +64,32 @@ export default {
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
+    @media screen and (max-width: 1400px) {
+      width: 75px;
+      height: 75px;
+    }
+  }
+}
+@media screen and (max-width: 1000px) {
+  .user-panel {
+    position: relative;
+    &__image-container {
+      z-index: 3;
+    }
+    &__info__link {
+      color: $main-color !important;
+    }
+    .link-wrapper {
+      z-index: 2;
+      position: absolute;
+      right: 0;
+      height: 79px;
+      top: 101%;
+      background-color: $top-bar;
+      color: $main-color;
+      width: max-content;
+      padding: 6px 12px 6px 6px;
+    }
   }
 }
 </style>

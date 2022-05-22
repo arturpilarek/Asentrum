@@ -1,15 +1,17 @@
 <template>
   <div class="statistics">
     <h3 class="statistics__name">{{ statName }}</h3>
-    <p class="statistics__result">{{ statResult }}</p>
-    <div class="wrapper">
-      <p
-        class="statistics__compare"
-        :style="[decrease ? 'color: #E64D15' : 'color: #27B981']"
-      >
-        {{ statCompare }}
-      </p>
-      <arrow-icon :class="{ iconDecrease: decrease }" />
+    <div class="mobile__wrapper">
+      <p class="statistics__result">{{ statResult }}</p>
+      <div class="wrapper">
+        <p
+          class="statistics__compare"
+          :style="[decrease ? 'color: #E64D15' : 'color: #27B981']"
+        >
+          {{ statCompare }}
+        </p>
+        <arrow-icon :class="{ iconDecrease: decrease }" />
+      </div>
     </div>
   </div>
 </template>
@@ -63,9 +65,36 @@ export default {
       transform: rotate(180deg);
     }
   }
+  .mobile__wrapper {
+    @include flex-column;
+    align-items: center;
+  }
   &__compare {
     padding-right: 3px;
     font-size: 20px;
+  }
+}
+@media screen and (max-width: 825px) {
+  .statistics {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 50px;
+    &__name,
+    &__result {
+      font-size: 20px;
+    }
+    &__result {
+      padding-top: initial;
+    }
+    .wrapper {
+      padding-top: initial;
+    }
+    .mobile__wrapper {
+      display: flex;
+      flex-direction: row;
+      gap: 12px;
+    }
   }
 }
 </style>

@@ -3,21 +3,21 @@
     <Statistics
       :decrease="Boolean(false)"
       stat-name="Antal besøgende"
-      stat-result="13.502"
+      stat-result="13.502 kr"
       stat-compare="5%"
       class="website-stats__stat"
     />
     <Statistics
       :decrease="Boolean(true)"
       stat-name="Omsætning"
-      stat-result="kr. 135032"
+      stat-result="135032 kr"
       stat-compare="1%"
       class="website-stats__stat"
     />
     <Statistics
       :decrease="Boolean(false)"
       stat-name="Konverteringer"
-      stat-result="10.254"
+      stat-result="10.254 kr"
       stat-compare="5%"
     />
   </div>
@@ -35,14 +35,21 @@ export default {
 <style scoped lang="scss">
 .website-stats {
   height: 100%;
+  min-height: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 25px 0;
+  @media screen and (max-width: 825px) {
+    min-height: initial;
+  }
   &__stat {
     position: relative;
     &:after {
+      @media screen and (max-width: 825px) {
+        display: none;
+      }
       content: "";
       position: absolute;
       height: 1px;

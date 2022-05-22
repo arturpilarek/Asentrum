@@ -83,7 +83,7 @@ export default {
   .case-link {
     height: 100%;
     width: 100%;
-    z-index: 2;
+    z-index: 1;
     &:hover {
       :before {
         content: "";
@@ -100,7 +100,7 @@ export default {
   .case--header {
     font-weight: 600;
     margin-bottom: 10px;
-    z-index: 3;
+    z-index: 2;
     position: sticky;
     top: 0;
     background-color: white;

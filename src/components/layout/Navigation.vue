@@ -1,9 +1,11 @@
 <template>
   <div class="navigation">
-    <div class="fixed-wrapper">
-      <LogoIcon class="navigation__logo" />
-      <NavigationLinks class="navigation__nav" />
-      <UserPanel class="navigation__user" />
+    <div class="absolute__wrapper">
+      <div class="fixed-wrapper">
+        <LogoIcon class="navigation__logo" />
+        <NavigationLinks class="navigation__nav" />
+        <UserPanel class="navigation__user" />
+      </div>
     </div>
   </div>
 </template>
@@ -26,20 +28,33 @@ export default {
 <style scoped lang="scss">
 .navigation {
   width: 360px;
-  height: 100%;
   background-color: $main-color;
-  .fixed-wrapper {
-    background-color: $main-color;
-    position: fixed;
-    width: 360px;
+  position: relative;
+  .absolute__wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $main-color;
+  }
+  .fixed-wrapper {
+    position: fixed;
+    height: 100%;
+    width: 360px;
     @include flex-column;
     align-items: center;
   }
   &__logo {
     width: 151px;
-    height: 81px;
+    height: auto;
     margin-top: 24px;
+    @media screen and (max-width: 1100px) {
+      width: 113px;
+      height: 60px;
+    }
   }
   &__nav {
     margin-top: 74px;
@@ -47,7 +62,43 @@ export default {
   }
   &__user {
     position: absolute;
-    bottom: 60px;
+    bottom: 24px;
+  }
+}
+@media screen and (max-width: 1400px) {
+  .navigation {
+    width: 240px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .navigation {
+    width: 100vw;
+    height: 125px;
+    position: sticky;
+    top: 0;
+    z-index: 4;
+    .absolute__wrapper {
+      position: initial;
+    }
+    .fixed-wrapper {
+      width: 100vw;
+      position: initial;
+      flex-direction: row;
+      bottom: initial;
+      justify-content: space-between;
+      padding: 25px;
+    }
+    &__logo {
+      margin-top: 0;
+    }
+    &__nav {
+      flex-direction: initial;
+      margin-top: initial;
+    }
+    &__user {
+      position: initial;
+    }
   }
 }
 </style>

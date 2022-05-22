@@ -1,18 +1,21 @@
 <template>
   <section class="tasks">
-    <ContentContainer :title="addString('Aktive cases')" class="active-cases">
+    <ContentContainer
+      :title="addString('Aktive cases')"
+      class="active-cases container"
+    >
       <ActiveCases class="active-cases-component" />
     </ContentContainer>
-    <ContentContainer :title="addString('Status')" class="status">
+    <ContentContainer :title="addString('Status')" class="status container">
       <TasksStatus />
     </ContentContainer>
     <ContentContainer
       :title="addString('Seneste aktiviteter')"
-      class="recent-activity"
+      class="recent-activity container"
     >
       <RecentActivities />
     </ContentContainer>
-    <ContentContainer class="tasks-overview" title="Opgaveoversigt">
+    <ContentContainer class="tasks-overview container" title="Opgaveoversigt">
       <TasksOverview />
     </ContentContainer>
   </section>
@@ -49,10 +52,27 @@ export default {
   min-height: calc(100vh - 132px);
   gap: 25px;
   grid-template-columns: 2fr 1fr 2fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-rows: auto;
   grid-template-areas:
     "activeCases status recentActivity"
     "tasksOverview tasksOverview tasksOverview";
+  @media screen and (max-width: 1400px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 0.5fr 1fr 1fr;
+    grid-template-areas:
+      "activeCases status"
+      "activeCases recentActivity"
+      "tasksOverview tasksOverview";
+  }
+  @media screen and (max-width: 825px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    .container {
+      width: 100%;
+    }
+  }
   .active-cases {
     grid-area: activeCases;
   }

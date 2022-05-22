@@ -1,17 +1,38 @@
 <template>
-  <section>
-    <UserCreate />
-    <CreateTask />
+  <section class="administration">
+    <ContentContainer
+      title="Opret ny case"
+      class="administration__container"
+      title-centered="true"
+    >
+      <CreateTask />
+    </ContentContainer>
+    <ContentContainer
+      title="Opret bruger"
+      class="administration__container"
+      title-centered="true"
+    >
+      <UserCreate />
+    </ContentContainer>
   </section>
 </template>
 
 <script>
 import UserCreate from "../components/pages/user/UserCreate";
 import CreateTask from "../components/pages/tasks/CreateTask";
+import ContentContainer from "../components/ui/ContentContainer";
 
 export default {
-  components: { UserCreate, CreateTask },
+  components: { UserCreate, CreateTask, ContentContainer },
 };
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.administration {
+  @include flex-column;
+  max-width: 800px;
+  gap: 24px;
+  .administration__container {
+  }
+}
+</style>

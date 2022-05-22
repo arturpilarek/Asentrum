@@ -4,14 +4,10 @@
       <h2>Hej {{ trimDisplayName }}!</h2>
       <div class="dropdown-wrapper">
         <select>
-          <option value="CoolShoes" selected="selected" disabled>
-            Cool Shoes
-          </option>
+          <option value="CoolShoes" selected="selected">Cool Shoes</option>
         </select>
         <select>
-          <option value="last7days" selected="selected" disabled>
-            Seneste 7 dage
-          </option>
+          <option value="last7days" selected="selected">Seneste 7 dage</option>
         </select>
       </div>
     </div>
@@ -100,9 +96,20 @@ export default {
 </script>
 <style scoped lang="scss">
 .dashboard {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  &__grid,
+  &__topbar {
+    //max-width: 90%;
+  }
+
   &__grid {
+    width: 100%;
     display: grid;
-    min-height: calc(100vh - 132px);
     gap: 25px;
     grid-template-columns: 2fr 1fr 2fr;
     grid-template-rows: 1fr 1fr 1fr;
@@ -110,14 +117,28 @@ export default {
       "activeCases status recentActivity"
       "followers websiteInfo mostSold"
       "followers websiteInfo visitors";
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: 1400px) {
       grid-template-columns: 1fr 1fr;
-      grid-template-rows: 1fr 1fr 1fr 1fr;
+      grid-template-rows: auto;
       grid-template-areas:
-        "activeCases status "
-        "recentActivity websiteInfo"
+        "activeCases recentActivity "
+        "status websiteInfo"
         "followers websiteInfo "
         "mostSold visitors";
+    }
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      grid-template-areas:
+        "activeCases recentActivity "
+        "status websiteInfo"
+        "followers websiteInfo "
+        "mostSold visitors";
+    }
+    @media screen and (max-width: 825px) {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
     }
     .active-cases {
       grid-area: activeCases;
@@ -141,14 +162,23 @@ export default {
       grid-area: visitors;
     }
   }
+
   &__topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 50px;
+    width: 100%;
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-bottom: 25px;
+      gap: 12px;
+    }
     h2 {
       font-size: 36px;
       position: relative;
+
       &:after {
         content: "";
         position: absolute;
@@ -157,8 +187,12 @@ export default {
         width: 150%;
         bottom: -12px;
         left: 0;
+        @media screen and (max-width: 1000px) {
+          display: none;
+        }
       }
     }
+
     select {
       min-width: 200px;
       max-width: 250px;
@@ -172,7 +206,14 @@ export default {
       font-size: 16px;
       font-weight: 600;
       border-right: 20px solid transparent;
+      @media screen and (max-width: 1000px) {
+        min-width: initial;
+        padding-left: 10px;
+        max-width: 150px;
+        font-size: 14px;
+      }
     }
+
     .dropdown-wrapper {
       display: flex;
       gap: 12px;

@@ -1,95 +1,95 @@
 <template>
-  <div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 offset-md-3">
-          <h2>Create Task</h2>
-          <div class="form-group">
+  <section class="create-task">
+    <div class="create-task__input-container">
+      <label for="task-name">Task navn</label>
+      <input
+        name="task-name"
+        type="text"
+        placeholder="Task Navn"
+        v-model="taskName"
+      />
+    </div>
+    <div class="create-task__input-container">
+      <label>Beskrivelse</label>
+      <textarea class="text-area" v-model="taskDescription"></textarea>
+    </div>
+    <div class="create-task__input-container">
+      <label>Kunde</label>
+      <select v-model="taskClient">
+        <option disabled value="">Valg kunde</option>
+        <option>Demo</option>
+      </select>
+    </div>
+    <div class="create-task__input-container">
+      <label>Intern Beskrivelse</label>
+      <textarea v-model="internTaskDescription"></textarea>
+    </div>
+    <div class="create-task__input-container">
+      <label>Deadline</label>
+      <input type="text" v-model="taskDeadline" />
+    </div>
+    <div class="todo-wrapper">
+      <div class="create-task__input-container">
+        <label>To-do</label>
+        <input type="text" v-model="todo" placeholder="Tilføj opgaven" />
+        <button @click="updateTodo">+</button>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <p>placeholder</p>
+            <p>Antal timer</p>
+            <p>Pris</p>
+          </li>
+          <li v-for="(todo, index) in todoList" :key="index">
+            <p>{{ todo.name }}</p>
             <input
-              type="text"
-              class="form-control mb-2"
-              placeholder="Task Name"
-              v-model="taskName"
+              type="number"
+              v-model="todoList[index].hours"
+              :placeholder="0"
             />
-          </div>
-          <div class="form-group">
-            <h4>Beskrivelse</h4>
-            <textarea v-model="taskDescription"></textarea>
-          </div>
-          <div>
-            <h4>Kunde</h4>
-            <select v-model="taskClient">
-              <option disabled value="">Valg kunde</option>
-              <option>Demo</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <h4>Intern Beskrivelse</h4>
-            <textarea v-model="internTaskDescription"></textarea>
-          </div>
-          <div>
-            <h4>Deadline</h4>
-            <input type="text" v-model="taskDeadline" />
-          </div>
-          <div>
-            <div>
-              <p>To-do</p>
-              <input type="text" v-model="todo" placeholder="Tilføj opgaven" />
-              <button @click="updateTodo">+</button>
-            </div>
-            <div>
-              <ul>
-                <li v-for="(todo, index) in todoList" :key="index">
-                  <p>{{ todo.name }}</p>
-                  <input
-                    type="number"
-                    v-model="todoList[index].hours"
-                    :placeholder="0"
-                  />
-                  <input
-                    type="number"
-                    v-model="todoList[index].price"
-                    :placeholder="0"
-                  />
-                  <button @click="removeTodo(index)">Remove todo</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            <div>
-              <p>Tildelt adgang</p>
-              <select v-model="user">
-                <option value="" disabled>Tilføj bruger</option>
-                <option>John Larsen</option>
-                <option>Sofie Jørgensen</option>
-                <option>Mads Hansen</option>
-              </select>
-              <button @click="addUser">+</button>
-            </div>
-            <div>
-              <p>Tilføjet</p>
-              <ul>
-                <li v-for="(user, index) in addedUsers" :key="index">
-                  <p>{{ user }}</p>
-                  <button @click="removeUser(index)">-</button>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <button @click="createTask" class="btn btn-primary">
-            Opret case
-          </button>
-        </div>
+            <input
+              type="number"
+              v-model="todoList[index].price"
+              :placeholder="0"
+            />
+            <RemoveIcon class="remove-icon" @click="removeTodo(index)" />
+          </li>
+        </ul>
       </div>
     </div>
-  </div>
+    <div class="give-access-wrapper">
+      <div class="create-task__input-container">
+        <label>Tildelt adgang</label>
+        <select v-model="user">
+          <option value="" disabled>Tilføj bruger</option>
+          <option>John Larsen</option>
+          <option>Sofie Jørgensen</option>
+          <option>Mads Hansen</option>
+        </select>
+        <button @click="addUser">+</button>
+      </div>
+      <div>
+        <p>Tilføjet</p>
+        <ul>
+          <li v-for="(user, index) in addedUsers" :key="index">
+            <p>{{ user }}</p>
+            <button @click="removeUser(index)">-</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <BaseButton text="Opret" @click="createTask" />
+  </section>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import BaseButton from "../../ui/BaseButton";
+import RemoveIcon from "../../../assets/icons/RemoveIcon";
 
 export default {
+  components: { BaseButton, RemoveIcon },
   data() {
     return {
       taskName: "",
@@ -167,4 +167,26 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.create-task {
+  &__input-container {
+    width: 50%;
+    @include flex-column;
+    label {
+      padding-bottom: 3px;
+      font-weight: 600;
+    }
+    input,
+    select,
+    textarea {
+      padding: 12px 12px;
+      border: none;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
+      border-radius: 4px;
+    }
+  }
+  .remove-icon {
+    cursor: pointer;
+  }
+}
+</style>

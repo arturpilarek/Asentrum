@@ -1,12 +1,50 @@
 <template>
-  <h1>Create an Account</h1>
-  <p><input type="text" placeholder="Email" v-model="email" /></p>
-  <p><input type="text" placeholder="Display name" v-model="displayName" /></p>
-  <p><input type="text" placeholder="Image URL" v-model="photoUrl" /></p>
-  <p><input type="password" placeholder="Password" v-model="password" /></p>
-  <p><button @click="register">Submit</button></p>
-  <p>{{ email }}</p>
-  <p>{{ password }}</p>
+  <section class="user-create">
+    <div class="input-container">
+      <label for="email">Email</label>
+      <input type="text" name="email" placeholder="Email" v-model="email" />
+    </div>
+    <div class="input-container">
+      <label for="display-name">Display name</label>
+      <input
+        type="text"
+        name="display-name"
+        placeholder="Display name"
+        v-model="displayName"
+      />
+    </div>
+    <div class="input-container">
+      <label for="photo-url">Link til billedet</label>
+      <input
+        type="text"
+        name="photo-url"
+        placeholder="Image URL"
+        v-model="photoUrl"
+      />
+    </div>
+    <div class="input-container">
+      <label for="password">Password</label>
+      <input
+        name="password"
+        type="password"
+        placeholder="Password"
+        v-model="password"
+      />
+    </div>
+    <div class="input-container">
+      <label for="repeat-password">Repeat password</label>
+      <input
+        name="repeat-password"
+        type="password"
+        placeholder="Repeat password"
+        v-model="repeatPassword"
+      />
+      <p v-if="!passwordsMatching" class="not-matching">
+        Passwords does not match
+      </p>
+    </div>
+    <BaseButton text="Submit" @click="register" />
+  </section>
 </template>
 
 <script>
@@ -16,36 +54,78 @@ import {
   updateProfile,
 } from "firebase/auth";
 import router from "../../../router";
+import BaseButton from "../../ui/BaseButton";
 
 export default {
+  components: { BaseButton },
   data() {
     return {
       email: null,
       password: null,
+      repeatPassword: null,
       displayName: null,
       photoUrl: null,
+      passwordsMatching: true,
     };
+  },
+  computed: {
+    passwordsDoMatch() {
+      return this.password === this.repeatPassword;
+    },
   },
   methods: {
     async register() {
-      await createUserWithEmailAndPassword(getAuth(), this.email, this.password)
-        .then((res) => {
-          alert("User created!");
-          console.log(res.user);
-          updateProfile(getAuth().currentUser, {
-            displayName: this.displayName,
-            photoURL: this.photoUrl,
-          });
+      if (this.passwordsDoMatch) {
+        this.passwordsMatching = true;
+        await createUserWithEmailAndPassword(
+          getAuth(),
+          this.email,
+          this.password
+        )
+          .then((res) => {
+            alert("User created!");
+            console.log(res.user);
+            updateProfile(getAuth().currentUser, {
+              displayName: this.displayName,
+              photoURL: this.photoUrl,
+            });
 
-          router.push("/");
-        })
-        .catch((error) => {
-          console.log(error.code);
-          alert(error.message);
-        });
+            router.push("/");
+          })
+          .catch((error) => {
+            console.log(error.code);
+            alert(error.message);
+          });
+      } else {
+        this.passwordsMatching = false;
+      }
     },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.user-create {
+  padding-top: 24px;
+  @include flex-column;
+  gap: 13px;
+  .input-container {
+    @include flex-column;
+    width: 50%;
+    label {
+      padding-bottom: 3px;
+      font-weight: 600;
+    }
+    input {
+      padding: 12px 12px;
+      border: none;
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
+      border-radius: 4px;
+    }
+  }
+  .not-matching {
+    color: red;
+    padding-top: 8px;
+  }
+}
+</style>

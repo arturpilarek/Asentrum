@@ -51,7 +51,13 @@ ul {
   display: flex;
   height: 100%;
   width: 100%;
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+  }
   &__navigation {
+    @media screen and (min-width: 1000px) {
+      min-height: 100vh;
+    }
     width: 360px;
   }
   &__view {
@@ -59,6 +65,9 @@ ul {
   }
   .content {
     padding: 50px;
+    @media screen and (max-width: 1100px) {
+      padding: 25px;
+    }
   }
 }
 </style>

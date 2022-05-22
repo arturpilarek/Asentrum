@@ -62,7 +62,16 @@ export default {
   align-items: center;
   justify-content: space-evenly;
   font-weight: 600;
+  padding-top: 12px;
   .wrapper {
+    @media screen and (max-width: 1400px) {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-left: 5%;
+      padding-right: 5%;
+    }
     .followers__name {
       font-size: 30px;
       display: flex;
@@ -70,12 +79,18 @@ export default {
       p {
         padding-left: 12px;
       }
+      @media screen and (max-width: 1400px) {
+        font-size: 22px;
+      }
     }
     .followers__numbers {
       display: flex;
       justify-content: center;
       gap: 13px;
       padding-top: 24px;
+      @media screen and (max-width: 1400px) {
+        padding-top: 0;
+      }
       &__result {
         font-size: 30px;
       }
@@ -92,6 +107,27 @@ export default {
         .arrow-icon {
           fill: #e64d15;
           transform: rotate(180deg);
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 825px) {
+  .followers {
+    .wrapper {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      padding: 12px 0;
+      justify-items: center;
+      .followers__name {
+        p {
+          font-size: 20px;
+        }
+      }
+      .followers__numbers {
+        &__result {
+          font-size: 20px;
         }
       }
     }
