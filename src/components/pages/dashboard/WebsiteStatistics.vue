@@ -43,6 +43,7 @@ export default {
   padding: 25px 0;
   @media screen and (max-width: 825px) {
     min-height: initial;
+    gap: 12px;
   }
   &__stat {
     position: relative;

@@ -12,20 +12,4 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const tasksCollection = collection(db, "tasks");
-
-// collection(db, "tasks")
-//   .get()
-//   .then((querySnapshot) => {
-//     querySnapshot.forEach((doc) => {
-//       console.log(doc.id);
-//     });
-//   });
-
-// async function showTask() {
-//   let taskRef = doc(tasksCollection, "02itjvCyZBmZaVpeyBr1");
-//   const taskSnap = await getDoc(taskRef).then((res) => res.data());
-//   console.log(taskSnap);
-// }
-// showTask();
-
 export default tasksCollection;

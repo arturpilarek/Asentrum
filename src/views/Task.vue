@@ -30,7 +30,6 @@ export default {
   },
   created() {
     let routerTaskId = this.$route.params.taskId;
-    console.log(typeof routerTaskId);
     this.taskId = routerTaskId;
     this.$store.dispatch("fetchTask", { id: routerTaskId });
   },

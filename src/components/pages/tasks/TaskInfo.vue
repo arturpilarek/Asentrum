@@ -39,10 +39,13 @@
               :class="[
                 todo.status === 'toDo'
                   ? 'checkbox__container--unchecked'
-                  : 'checkbox__container--checked',
+                  : todo.status === 'done'
+                  ? 'checkbox__container--checked'
+                  : 'checkbox__container--doing',
               ]"
             >
-              <CheckboxIcon />
+              <CheckboxIcon v-if="todo.status === 'done'" />
+              <DoingIcon v-else-if="todo.status === 'doing'" />
             </div>
             <p class="todo__item__text">
               {{ todo.name }}
@@ -50,12 +53,20 @@
           </div>
 
           <p class="todo__item__text">{{ todo.hours }}</p>
-          <p class="todo__item__text">status</p>
+          <p class="todo__item__text">
+            {{
+              todo.status === "toDo"
+                ? "To-do"
+                : todo.status === "done"
+                ? "Færdig"
+                : "I gang"
+            }}
+          </p>
           <p class="todo__item__text">{{ todo.price }}kr</p>
         </li>
       </ul>
     </div>
-    <div class="user-added>">
+    <div v-if="task.addedUsers.length > 0" class="user-added>">
       <p class="user-added__title">Tildelt adgang</p>
       <ul class="user-added__wrapper">
         <li
@@ -73,6 +84,7 @@
 <script>
 import EditIcon from "../../../assets/icons/EditIcon";
 import CheckboxIcon from "../../../assets/icons/CheckboxIcon";
+import DoingIcon from "../../../assets/icons/DoingIcon";
 import { setDoc, doc } from "firebase/firestore";
 import tasksCollection from "../../../firebase";
 
@@ -90,7 +102,7 @@ export default {
       taskId: this.$route.params.taskId,
     };
   },
-  components: { EditIcon, CheckboxIcon },
+  components: { EditIcon, CheckboxIcon, DoingIcon },
   computed: {
     statusColor() {
       return this.task.status === "Active"
@@ -99,6 +111,13 @@ export default {
         ? "#EECA44"
         : "#ADADAD";
     },
+    // statusClass(todo) {
+    //   return todo.status === "toDo"
+    //     ? "checkbox__container--unchecked"
+    //     : todo.status === "doing"
+    //     ? "checkbox__container--doing"
+    //     : "checkbox__container--checked";
+    // },
     getCurrentId() {
       return this.taskId.toString();
     },
@@ -107,6 +126,8 @@ export default {
     changeTodoStatus(index, status) {
       status === "toDo"
         ? (this.todoList[index].status = "done")
+        : status === "done"
+        ? (this.todoList[index].status = "doing")
         : (this.todoList[index].status = "toDo");
       this.updateTodoStatus();
     },
@@ -195,6 +216,10 @@ export default {
       .checkbox__container--checked {
         border: none;
         background-color: #27b981;
+      }
+      .checkbox__container--doing {
+        padding-left: 2px;
+        background-color: #eeca44;
       }
     }
   }

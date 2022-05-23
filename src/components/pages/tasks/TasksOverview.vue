@@ -4,21 +4,25 @@
       <li class="case case-header">
         <p>Status</p>
         <p>Id</p>
-        <p>Kunde</p>
+        <p class="mobile-hidden-450">Kunde</p>
         <p>Titel</p>
-        <p>Oprettet</p>
-        <p>Deadline</p>
-        <p>Tildelt adgang</p>
+        <p class="mobile-hidden">Oprettet</p>
+        <p class="mobile-hidden-450">Deadline</p>
+        <p class="mobile-hidden">Tildelt adgang</p>
       </li>
       <li v-for="(task, index) in tasksSortId" :key="index">
         <router-link class="case case-link" :to="{ path: `/task/${task.id}` }">
-          <StatusIcon :status="task.status" class="case__status" />
+          <StatusIcon
+            v-if="task.status"
+            :status="task.status"
+            class="case__status"
+          />
           <p>#{{ task.internalId }}</p>
-          <p>{{ task.client }}</p>
+          <p class="mobile-hidden-450">{{ task.client }}</p>
           <p>{{ task.title }}</p>
-          <p>{{ task.created }}</p>
-          <p>{{ task.deadline }}</p>
-          <div>
+          <p class="mobile-hidden-850">{{ task.created }}</p>
+          <p class="mobile-hidden-450">{{ task.deadline }}</p>
+          <div class="mobile-hidden-850">
             <p v-for="(user, index) in task.addedUsers" :key="index">
               {{ user }}
             </p>
@@ -65,6 +69,24 @@ export default {
     grid-template-columns: repeat(7, 1fr);
     justify-items: center;
     position: relative;
+    @media screen and (max-width: 850px) {
+      grid-template-columns: repeat(5, 1fr);
+      .mobile-hidden {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 850px) {
+      grid-template-columns: repeat(5, 1fr);
+      .mobile-hidden-850 {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 450px) {
+      grid-template-columns: repeat(3, 1fr);
+      .mobile-hidden-450 {
+        display: none;
+      }
+    }
   }
   .case-link {
     height: 100%;

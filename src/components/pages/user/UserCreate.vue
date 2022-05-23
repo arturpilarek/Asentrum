@@ -82,9 +82,8 @@ export default {
           this.email,
           this.password
         )
-          .then((res) => {
+          .then(() => {
             alert("User created!");
-            console.log(res.user);
             updateProfile(getAuth().currentUser, {
               displayName: this.displayName,
               photoURL: this.photoUrl,

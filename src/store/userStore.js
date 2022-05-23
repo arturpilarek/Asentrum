@@ -18,11 +18,9 @@ export default {
   mutations: {
     setUser(state, payload) {
       state.user = payload;
-      console.log("user state changed:", payload);
     },
     updateUser(state, payload) {
       state.user = { ...state.user, payload };
-      console.log("user state updated:", state.user);
     },
   },
   getters: {
@@ -41,7 +39,6 @@ export default {
     },
 
     async logout(context) {
-      console.log("logout");
       await signOut(getAuth());
       context.commit("setUser", null);
       router.push("/");

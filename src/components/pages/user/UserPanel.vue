@@ -42,15 +42,22 @@ export default {
     height: 90px;
     @include flex-column;
     justify-content: space-between;
-    a,
     span,
-    p {
+    p,
+    a {
       color: $secondary-color;
+      @media screen and (max-width: 1000px) {
+        color: $main-color;
+      }
       font-weight: 600;
       font-size: 20px;
       @media screen and (max-width: 1400px) {
         font-size: 18px;
       }
+    }
+    a:hover,
+    span:hover {
+      color: $accent-hover;
     }
     span {
       cursor: pointer;
@@ -76,9 +83,6 @@ export default {
     &__image-container {
       z-index: 3;
     }
-    &__info__link {
-      color: $main-color !important;
-    }
     .link-wrapper {
       z-index: 2;
       position: absolute;
@@ -86,10 +90,13 @@ export default {
       height: 79px;
       top: 101%;
       background-color: $top-bar;
-      color: $main-color;
       width: max-content;
       padding: 6px 12px 6px 6px;
     }
   }
+}
+
+.router-link-exact-active {
+  color: $accent-color !important;
 }
 </style>

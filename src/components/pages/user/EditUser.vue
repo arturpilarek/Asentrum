@@ -1,33 +1,39 @@
 <template>
-  <div>
-    <h2>Edit User</h2>
-    <div>
-      <div>
-        <h4>Display Name</h4>
+  <ContentContainer
+    title="Edit user"
+    class="content-wrapper"
+    :title-centered="Boolean(true)"
+  >
+    <div class="edit-user">
+      <div class="edit-user__input-container">
+        <label>Display Name</label>
         <input
           type="text"
           :placeholder="user.displayName"
           v-model="displayName"
         />
       </div>
-      <div>
-        <h4>Email</h4>
+      <div class="edit-user__input-container">
+        <label>Email</label>
         <input type="text" :placeholder="user.email" v-model="email" />
       </div>
-      <div>
-        <h4>Photo URL</h4>
+      <div class="edit-user__input-container">
+        <label>Photo URL</label>
         <input type="text" :placeholder="user.photoURL" v-model="photoURL" />
       </div>
-      <button @click="updateProfile()">Update Profile</button>
+      <BaseButton text="Opdater" @click="updateProfile()" />
     </div>
-  </div>
+  </ContentContainer>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+import ContentContainer from "../../ui/ContentContainer";
+import BaseButton from "../../ui/BaseButton";
 
 export default {
   name: "EditUser",
+  components: { ContentContainer, BaseButton },
   data() {
     return {
       displayName: "",
@@ -56,7 +62,7 @@ export default {
             photoURL: this.photoURL,
           });
         }
-        alert("Data opdateret succefuld, log ind igen");
+        alert("Data opdateret succesfuld, log ind igen");
         this.$store.dispatch("logout");
       } catch (error) {
         console.log(error.code);
@@ -66,4 +72,28 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+.content-wrapper {
+  width: max-content;
+  .edit-user {
+    padding-top: 18px;
+    @include flex-column;
+    align-items: center;
+    gap: 13px;
+    &__input-container {
+      width: 100%;
+      @include flex-column;
+      label {
+        padding-bottom: 3px;
+        font-weight: 600;
+      }
+      input {
+        padding: 12px 12px;
+        border: none;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
+        border-radius: 4px;
+      }
+    }
+  }
+}
+</style>

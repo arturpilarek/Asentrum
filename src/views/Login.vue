@@ -62,30 +62,6 @@ export default {
         }
       }
     },
-    // async login() {
-    //   await signInWithEmailAndPassword(getAuth(), this.email, this.password)
-    //     .then((data) => {
-    //       console.log("Registered", data);
-    //       router.push("/dashboard");
-    //     })
-    //     .catch((error) => {
-    //       console.log(error.code);
-    //       switch (error.code) {
-    //         case "auth/invalid-email":
-    //           this.errorMsg = "Invalid Email";
-    //           break;
-    //         case "auth/user-not-found":
-    //           this.errorMsg = "No user found";
-    //           break;
-    //         case "auth/wrong-password":
-    //           this.errorMsg = "Incorrect password";
-    //           break;
-    //         default:
-    //           this.errorMsg = "Email or password was incorrect";
-    //           break;
-    //       }
-    //     });
-    // },
   },
 };
 </script>

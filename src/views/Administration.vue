@@ -3,14 +3,14 @@
     <ContentContainer
       title="Opret ny case"
       class="administration__container"
-      title-centered="true"
+      :title-centered="Boolean(true)"
     >
       <CreateTask />
     </ContentContainer>
     <ContentContainer
       title="Opret bruger"
       class="administration__container"
-      title-centered="true"
+      :title-centered="Boolean(true)"
     >
       <UserCreate />
     </ContentContainer>

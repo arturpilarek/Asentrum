@@ -9,7 +9,11 @@
       </li>
       <li v-for="(task, index) in tasksSorted" :key="index">
         <router-link class="case case-link" :to="{ path: `/task/${task.id}` }">
-          <StatusIcon class="case__status" :status="task.status" />
+          <StatusIcon
+            v-if="task.status"
+            class="case__status"
+            :status="task.status"
+          />
           <p class="case__id">#{{ task.internalId }}</p>
           <BellIcon v-if="task.needsAttention" class="case__mangler-svar" />
           <p v-else class="case__mangler-svar"></p>
