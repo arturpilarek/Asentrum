@@ -68,6 +68,7 @@ export default {
     margin-bottom: 20px;
     grid-template-columns: repeat(7, 1fr);
     justify-items: center;
+    align-items: center;
     position: relative;
     @media screen and (max-width: 850px) {
       grid-template-columns: repeat(5, 1fr);

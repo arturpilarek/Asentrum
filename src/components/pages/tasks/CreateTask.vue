@@ -233,6 +233,7 @@ export default {
       }
       .add {
         margin-left: 6px;
+        cursor: pointer;
       }
     }
     .todo-added {
