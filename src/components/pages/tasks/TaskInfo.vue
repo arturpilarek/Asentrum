@@ -111,6 +111,13 @@ export default {
         ? "#EECA44"
         : "#ADADAD";
     },
+    // statusClass(todo) {
+    //   return todo.status === "toDo"
+    //     ? "checkbox__container--unchecked"
+    //     : todo.status === "doing"
+    //     ? "checkbox__container--doing"
+    //     : "checkbox__container--checked";
+    // },
     getCurrentId() {
       return this.taskId.toString();
     },
@@ -121,7 +128,7 @@ export default {
         ? (this.todoList[index].status = "done")
         : status === "done"
         ? (this.todoList[index].status = "doing")
-        : (this.todoList[index].status = "to-do");
+        : (this.todoList[index].status = "toDo");
       this.updateTodoStatus();
     },
     async updateTodoStatus() {
