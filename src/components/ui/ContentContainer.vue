@@ -33,7 +33,7 @@ export default {
   background-color: white;
   padding: 25px;
   border-radius: 8px;
-  box-shadow: 0 0 8px hsla(0, 0, 0, 0.16);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
   h3 {
     font-size: 22px;
   }

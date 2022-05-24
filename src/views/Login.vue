@@ -18,7 +18,6 @@
 </template>
 
 <script>
-// import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import router from "../router";
 import BaseButton from "../components/ui/BaseButton";
 import BaseInput from "../components/ui/BaseInput";

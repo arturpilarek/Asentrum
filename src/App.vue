@@ -42,15 +42,15 @@ input::-webkit-inner-spin-button {
   width: 7px;
 }
 ::-webkit-scrollbar-track {
-  background-color: hsla(0, 0, 14%, 0.11);
+  background-color: rgba(0, 0, 14, 0.11);
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb {
-  border: 4px solid hsla(0, 0, 14%, 0.26);
+  border: 4px solid rgba(0, 0, 14, 0.26);
   border-radius: 8px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background-color: hsla(0, 0, 14%, 0.33);
+  background-color: rgba(0, 0, 14, 0.33);
 }
 
 .app {

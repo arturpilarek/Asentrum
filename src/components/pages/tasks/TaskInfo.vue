@@ -111,13 +111,6 @@ export default {
         ? "#EECA44"
         : "#ADADAD";
     },
-    // statusClass(todo) {
-    //   return todo.status === "toDo"
-    //     ? "checkbox__container--unchecked"
-    //     : todo.status === "doing"
-    //     ? "checkbox__container--doing"
-    //     : "checkbox__container--checked";
-    // },
     getCurrentId() {
       return this.taskId.toString();
     },
