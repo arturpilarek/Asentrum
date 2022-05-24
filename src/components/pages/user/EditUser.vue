@@ -1,12 +1,12 @@
 <template>
   <ContentContainer
-    title="Edit user"
+    title="Rediger bruger"
     class="content-wrapper"
     :title-centered="Boolean(true)"
   >
     <div class="edit-user">
       <div class="edit-user__input-container">
-        <label>Display Name</label>
+        <label>Navn</label>
         <input
           type="text"
           :placeholder="user.displayName"
@@ -15,10 +15,10 @@
       </div>
       <div class="edit-user__input-container">
         <label>Email</label>
-        <input type="text" :placeholder="user.email" v-model="email" />
+        <input type="text" :placeholder="user.email" v-model="email" disabled />
       </div>
       <div class="edit-user__input-container">
-        <label>Photo URL</label>
+        <label>Billede URL</label>
         <input type="text" :placeholder="user.photoURL" v-model="photoURL" />
       </div>
       <BaseButton text="Opdater" @click="updateProfile()" />

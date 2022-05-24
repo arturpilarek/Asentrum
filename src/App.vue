@@ -71,7 +71,7 @@ input::-webkit-inner-spin-button {
   }
   .content {
     padding: 50px;
-    @media screen and (max-width: 1100px) {
+    @media screen and (max-width: 1300px) {
       padding: 25px;
     }
   }

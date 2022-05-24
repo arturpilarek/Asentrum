@@ -3,12 +3,14 @@
     <Logo class="login__logo" />
     <div class="login__form" @keyup.enter="login">
       <BaseInput label-text="Email" @input-change="updateEmail" />
+      <p class="hint">For censor og eksaminator: admin@admin.com</p>
       <BaseInput
         label-text="Kodeord"
         type="password"
         model-value="password"
         @input-change="updatePassword"
       />
+      <p class="hint">For censor og eksaminator: admin1234</p>
       <p v-if="errorMsg" class="login__form__error-message">{{ errorMsg }}</p>
       <BaseButton @click="login" text="Log ind" />
     </div>
@@ -48,16 +50,16 @@ export default {
       } catch (error) {
         switch (error.code) {
           case "auth/invalid-email":
-            this.errorMsg = "Invalid Email";
+            this.errorMsg = "Forkert email";
             break;
           case "auth/user-not-found":
-            this.errorMsg = "No user found";
+            this.errorMsg = "Inden bruger fundet";
             break;
           case "auth/wrong-password":
-            this.errorMsg = "Incorrect password";
+            this.errorMsg = "Forkert kodeord";
             break;
           default:
-            this.errorMsg = "Email or password was incorrect";
+            this.errorMsg = "Email eller kodeord er ikke korrekt";
             break;
         }
       }
@@ -89,6 +91,9 @@ export default {
       padding-top: 8px;
       color: $accent-color;
     }
+  }
+  .hint {
+    color: white;
   }
 }
 </style>

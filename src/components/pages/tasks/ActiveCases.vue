@@ -17,7 +17,9 @@
           <p class="case__id">#{{ task.internalId }}</p>
           <BellIcon v-if="task.needsAttention" class="case__mangler-svar" />
           <p v-else class="case__mangler-svar"></p>
-          <p class="case--title">{{ task.title }}</p>
+          <p v-if="task.title" class="case--title">
+            {{ displayTaskTitle(task.title) }}
+          </p>
         </router-link>
       </li>
     </ul>
@@ -43,6 +45,9 @@ export default {
   methods: {
     async fetchTask(id) {
       await this.$store.dispatch("fetchTask", { id });
+    },
+    displayTaskTitle(title) {
+      return title.length > 20 ? title.substring(0, 20) + "..." : title;
     },
   },
   async created() {

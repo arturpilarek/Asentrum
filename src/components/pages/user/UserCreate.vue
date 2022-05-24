@@ -5,11 +5,11 @@
       <input type="text" name="email" placeholder="Email" v-model="email" />
     </div>
     <div class="input-container">
-      <label for="display-name">Display name</label>
+      <label for="display-name">Navn</label>
       <input
         type="text"
         name="display-name"
-        placeholder="Display name"
+        placeholder="Navn"
         v-model="displayName"
       />
     </div>
@@ -18,32 +18,30 @@
       <input
         type="text"
         name="photo-url"
-        placeholder="Image URL"
+        placeholder="Billede URL"
         v-model="photoUrl"
       />
     </div>
     <div class="input-container">
-      <label for="password">Password</label>
+      <label for="password">Kodeord</label>
       <input
         name="password"
         type="password"
-        placeholder="Password"
+        placeholder="Kodeord"
         v-model="password"
       />
     </div>
     <div class="input-container">
-      <label for="repeat-password">Repeat password</label>
+      <label for="repeat-password">Gentag kodeord</label>
       <input
         name="repeat-password"
         type="password"
-        placeholder="Repeat password"
+        placeholder="Gentag kodeord"
         v-model="repeatPassword"
       />
-      <p v-if="!passwordsMatching" class="not-matching">
-        Passwords does not match
-      </p>
+      <p v-if="!passwordsMatching" class="not-matching">Kodeord er ikke ens</p>
     </div>
-    <BaseButton text="Submit" @click="register" />
+    <BaseButton text="Opret" @click="register" />
   </section>
 </template>
 
@@ -83,7 +81,7 @@ export default {
           this.password
         )
           .then(() => {
-            alert("User created!");
+            alert("Bruger oprettet!");
             updateProfile(getAuth().currentUser, {
               displayName: this.displayName,
               photoURL: this.photoUrl,

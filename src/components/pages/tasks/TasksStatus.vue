@@ -1,7 +1,7 @@
 <template>
   <div class="tasks-status">
     <div class="wrapper">
-      <p>Mine cases:</p>
+      <p>Aktive cases:</p>
       <span class="active-cases">{{ tasksStatus.activeCases }}</span>
     </div>
     <div class="wrapper">

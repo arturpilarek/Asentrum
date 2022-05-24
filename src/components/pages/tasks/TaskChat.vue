@@ -1,6 +1,6 @@
 <template>
   <div class="chat">
-    <h1>chat under construction</h1>
+    <h1>Under opbygning</h1>
   </div>
 </template>
 

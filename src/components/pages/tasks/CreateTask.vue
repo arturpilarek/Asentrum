@@ -1,11 +1,11 @@
 <template>
   <section class="create-task">
     <div class="create-task__input-container">
-      <label for="task-name">Task navn</label>
+      <label for="task-name">Opgave navn</label>
       <input
         name="task-name"
         type="text"
-        placeholder="Task Navn"
+        placeholder="Opgave navn"
         v-model="taskName"
       />
     </div>
@@ -16,7 +16,7 @@
     <div class="create-task__input-container">
       <label>Kunde</label>
       <select v-model="taskClient">
-        <option disabled value="">Valg kunde</option>
+        <option disabled value="">Vælg kunde</option>
         <option>Demo</option>
       </select>
     </div>
@@ -159,7 +159,7 @@ export default {
         this.todoList = [];
         this.addedUsers = [];
       } catch (error) {
-        alert("Something went wrong, try again later");
+        alert("Noget gik galt, prøv igen senere");
         console.log(error.code);
       }
     },
@@ -298,9 +298,11 @@ export default {
         border-radius: 4px;
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.16);
         padding: 12px;
+        @include flex-column;
+        gap: 6px;
         &__user {
-          display: flex;
-          gap: 12px;
+          display: grid;
+          grid-template-columns: 130px 20px;
         }
       }
     }

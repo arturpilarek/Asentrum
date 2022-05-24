@@ -3,21 +3,21 @@
     <Statistics
       :decrease="Boolean(false)"
       stat-name="Antal besøgende"
-      stat-result="13.502 kr"
+      stat-result="13.502"
       stat-compare="5%"
       class="website-stats__stat"
     />
     <Statistics
       :decrease="Boolean(true)"
       stat-name="Omsætning"
-      stat-result="135032 kr"
+      stat-result="kr. 135032"
       stat-compare="1%"
       class="website-stats__stat"
     />
     <Statistics
       :decrease="Boolean(false)"
       stat-name="Konverteringer"
-      stat-result="10.254 kr"
+      stat-result="10.254"
       stat-compare="5%"
     />
   </div>

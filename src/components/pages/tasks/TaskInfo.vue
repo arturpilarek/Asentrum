@@ -128,7 +128,7 @@ export default {
         ? (this.todoList[index].status = "done")
         : status === "done"
         ? (this.todoList[index].status = "doing")
-        : (this.todoList[index].status = "toDo");
+        : (this.todoList[index].status = "to-do");
       this.updateTodoStatus();
     },
     async updateTodoStatus() {

@@ -37,6 +37,7 @@ export default {
       padding-left: 12px;
     }
     .square {
+      min-width: 16px;
       width: 16px;
       height: 16px;
       border-radius: 2px;

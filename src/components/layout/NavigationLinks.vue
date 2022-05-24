@@ -6,7 +6,7 @@
     </router-link>
     <router-link to="/tasks" class="navigation-links__link">
       <TasksIcon class="icon" />
-      <p>Tasks</p>
+      <p>Opgaver</p>
     </router-link>
     <router-link to="/administration" class="navigation-links__link">
       <AdministrationIcon class="icon" />

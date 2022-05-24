@@ -96,16 +96,10 @@ export default {
 </script>
 <style scoped lang="scss">
 .dashboard {
-  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-
-  &__grid,
-  &__topbar {
-    //max-width: 90%;
-  }
 
   &__grid {
     width: 100%;
@@ -117,7 +111,7 @@ export default {
       "activeCases status recentActivity"
       "followers websiteInfo mostSold"
       "followers websiteInfo visitors";
-    @media screen and (max-width: 1400px) {
+    @media screen and (max-width: 1420px) {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: auto;
       grid-template-areas:

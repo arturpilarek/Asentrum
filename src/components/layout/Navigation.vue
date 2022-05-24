@@ -28,13 +28,14 @@ export default {
 <style scoped lang="scss">
 .navigation {
   width: 360px;
+  min-width: 360px;
   background-color: $main-color;
   position: relative;
   .absolute__wrapper {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 360px;
     height: 100%;
     display: flex;
     justify-content: center;
@@ -68,6 +69,13 @@ export default {
 @media screen and (max-width: 1400px) {
   .navigation {
     width: 240px;
+    min-width: 240px;
+    .absolute__wrapper {
+      width: 240px;
+      .fixed-wrapper {
+        width: 240px;
+      }
+    }
   }
 }
 
@@ -76,18 +84,20 @@ export default {
     width: 100vw;
     height: 125px;
     position: sticky;
+    max-width: initial;
     top: 0;
     z-index: 4;
     .absolute__wrapper {
-      position: initial;
-    }
-    .fixed-wrapper {
       width: 100vw;
       position: initial;
-      flex-direction: row;
-      bottom: initial;
-      justify-content: space-between;
-      padding: 25px;
+      .fixed-wrapper {
+        width: 100%;
+        position: initial;
+        flex-direction: row;
+        bottom: initial;
+        justify-content: space-between;
+        padding: 25px;
+      }
     }
     &__logo {
       margin-top: 0;

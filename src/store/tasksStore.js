@@ -20,9 +20,8 @@ export default {
     tasksLength: (state) => state.tasks.length,
     tasksStatus: (state) => {
       return {
-        activeCases: state.tasks.filter(
-          (task) => task.status === "Active" || "Waiting"
-        ).length,
+        activeCases: state.tasks.filter((task) => task.status !== "Solved")
+          .length,
         needsAttention: state.tasks.filter((task) => task.needsAttention)
           .length,
         solvedCases: state.tasks.filter((task) => task.status === "Solved")
